@@ -66,3 +66,24 @@ Please stick to [Google's C++ style guide](https://google.github.io/styleguide/c
 If you'd like to generate your own radar and lidar modify the code in `highway.h` to alter the cars. Also check out `tools.cpp` to
 change how measurements are taken, for instance lidar markers could be the (x,y) center of bounding boxes by scanning the PCD environment
 and performing clustering. This is similar to what was done in Sensor Fusion Lidar Obstacle Detection.
+
+## Additional Project Details
+### Highway Parameters
+
+In highway.h there are a number of parameters that can be modified to help with testing and understanding.
+
+```C++
+// Parameters 
+// --------------------------------
+// Set which cars to track with UKF
+std::vector<bool> trackCars = {true,true,true};
+// Visualize sensor measurements
+bool visualize_lidar = true;
+bool visualize_radar = true;
+bool visualize_pcd = false;
+// Predict path in the future using UKF
+double projectedTime = 0;
+int projectedSteps = 0;
+// --------------------------------
+```
+The *trackCars* list can be used to toggle on/off cars for the UKF objects to track. The default is to track all three cars on the road, but for testing it can be nice to toggle to only track one at a time. For instance to only track the first car *{true,false,false}*.
